@@ -2,6 +2,23 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 
+{% comment %} Read custom metafields and update the URL without redirecting {% endcomment %}
+<script>
+  const collectionHandle = '{{ collection.handle }}';
+  const customLevel1 = '{{ collection.metafields.custom.level_1.value.handle }}';
+  const customLevel2 = '{{ collection.metafields.custom.level_2.value.handle }}';
+
+  window.history.pushState(
+    {},
+    '',
+    customLevel1
+      ? `/collections${
+          customLevel1 ? `/${customLevel1}${customLevel2 ? `/${customLevel2}` : ''}` : ''
+        }/${collectionHandle}`
+      : `/collections/${collectionHandle}`
+  );
+</script>
+
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
@@ -233,7 +250,7 @@
           "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__2.label"
         }
       ]
-    },    
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",
