@@ -182,7 +182,11 @@
 
     {%- if section.settings.show_search_bar -%}
       <div class="header__search-bar">
-        {%- render 'header-search-modal-content', show_close_button: false -%}
+        {%- render 'header-search-modal-content',
+          input_id: 'Search-In-Header',
+          use_text_button: true,
+          show_close_button: false
+        -%}
       </div>
     {%- else -%}
       {%- liquid

@@ -51,10 +51,17 @@
           {{- 'icon-reset.svg' | inline_asset_content -}}
         </span>
       </button>
-      <button class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
-        <span class="svg-wrapper">
-          {{- 'icon-search.svg' | inline_asset_content -}}
-        </span>
+      <button
+        class="search__button field__button {% if use_text_button %} text__button{% endif %}"
+        aria-label="{{ 'general.search.search' | t }}"
+      >
+        {%- unless use_text_button -%}
+          <span class="svg-wrapper">
+            {{- 'icon-search.svg' | inline_asset_content -}}
+          </span>
+        {%- else -%}
+          {{ 'general.search.search' | t }}
+        {%- endunless -%}
       </button>
     </div>
 

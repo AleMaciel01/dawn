@@ -2,6 +2,11 @@
   padding-right: 9.8rem;
 }
 
+.search__input.field__input[type='search'] {
+  color: #292929;
+  background-color: #ffffff;
+}
+
 .search__button {
   right: var(--inputs-border-width);
   top: var(--inputs-border-width);
@@ -56,6 +61,18 @@
 .search__button .icon {
   height: 1.8rem;
   width: 1.8rem;
+}
+
+.search__button.text__button,
+.search__button:not(:focus-visible):not(.focused).text__button {
+  padding: 0 1.25rem;
+  width: auto;
+  right: 4.25px;
+  top: 4.25px;
+  height: calc(4.5rem - 7px);
+  background-color: #127e37;
+  font-family: var(--font-body-family);
+  font-weight: 700;
 }
 
 .reset__button .icon.icon-close {
