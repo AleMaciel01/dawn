@@ -325,6 +325,11 @@
                         </span>
                       </button>
                     </quantity-input>
+                    {% if product.available == true %}
+                      <span>In Stock</span>
+                    {% else %}
+                      <span>Out of Stock</span>
+                    {% endif %}
                     {% if product.metafields.custom.out_of_stock_lead_time.value != blank %}
                       <span
                         >Average time to ship: {{ product.metafields.custom.out_of_stock_lead_time.value }} days</span
