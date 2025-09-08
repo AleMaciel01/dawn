@@ -46,7 +46,7 @@
                       {%- assign sub_parts = sub_item | split: ':' -%}
                       {%- assign sub_title = sub_parts[0] -%}
                       {%- assign sub_handle = sub_parts[1] -%}
-                      {%- assign sub_url = '/apps/fits/' | append: sub_handle -%}
+                      {%- assign sub_url = '/fits/' | append: sub_handle -%}
                       <li>
                         <a
                           id="HeaderMenu-{{ item_handle }}-{{ sub_handle }}"
