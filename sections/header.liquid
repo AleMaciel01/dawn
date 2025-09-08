@@ -180,21 +180,25 @@
       {%- endif -%}
     {%- endif -%}
 
-    {%- if section.settings.show_search_bar -%}
-      <div class="header__search-bar">
-        {%- render 'header-search-modal-content', show_close_button: false -%}
-      </div>
-    {%- else -%}
-      {%- liquid
-        if section.settings.menu != blank
-          if section.settings.menu_type_desktop == 'dropdown'
-            render 'header-dropdown-menu'
-          elsif section.settings.menu_type_desktop != 'drawer'
-            render 'header-mega-menu'
+    {% comment %}
+      {%- if section.settings.show_search_bar -%}
+        <div class="header__search-bar">
+          {%- render 'header-search-modal-content', show_close_button: false -%}
+        </div>
+      {%- else -%}
+        {%- liquid
+          if section.settings.menu != blank
+            if section.settings.menu_type_desktop == 'dropdown'
+              render 'header-dropdown-menu'
+            elsif section.settings.menu_type_desktop != 'drawer'
+              render 'header-mega-menu'
+            endif
           endif
-        endif
-      %}
-    {%- endif -%}
+        %}
+      {%- endif -%}
+    {% endcomment %}
+
+    {% render 'header-dropdown-fitments-menu' %}
 
     {%- if section.settings.logo_position == 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
@@ -310,6 +314,8 @@
           </div>
         {%- endif -%}
       </a>
+
+      {% comment %} {% render 'header-dropdown-fitments-menu' %} {% endcomment %}
     </div>
   </header>
 </{{ header_tag }}>

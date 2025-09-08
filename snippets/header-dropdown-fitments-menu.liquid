@@ -1,0 +1,77 @@
+{% comment %}
+  Renders a standard dropdown style menu for the header.
+
+  Usage:
+  {% render 'header-dropdown-fitments-menu' %}
+{% endcomment %}
+
+{%- comment -%}
+  Define menu structure as JSON string, then convert to Liquid objects
+{%- endcomment -%}
+
+{%- assign menu_structure = 'Scion FRS|scion-frs|true|2013:2013_scion_frs,2014:2014_scion_frs,2015:2015_scion_frs,2016:2016_scion_frs||Toyota 86|toyota-86|true|2017:2017_toyota_86,2018:2018_toyota_86,2019:2019_toyota_86,2020:2020_toyota_86||Toyota GR86|toyota-gr86|true|2022:2022_toyota_gr86,2023:2023_toyota_gr86,2024:2024_toyota_gr86||Toyota Supra|toyota-supra|true|2020:2020_toyota_supra,2021:2021_toyota_supra,2022:2022_toyota_supra,2023:2023_toyota_supra,2024:2024_toyota_supra||Subaru BRZ|subaru-brz|true|2013:2013_subaru_brz,2014:2014_subaru_brz,2015:2015_subaru_brz,2016:2016_subaru_brz,2017:2017_subaru_brz,2018:2018_subaru_brz,2019:2019_subaru_brz,2020:2020_subaru_brz,2021:2021_subaru_brz,2022:2022_subaru_brz,2023:2023_subaru_brz,2024:2024_subaru_brz'
+  | split: '||'
+-%}
+
+<nav class="header__inline-menu">
+  <ul class="list-menu list-menu--inline" role="list">
+    {%- for menu_item in menu_structure -%}
+      {%- if menu_item != blank -%}
+        {%- assign item_parts = menu_item | split: '|' -%}
+        {%- assign item_title = item_parts[0] -%}
+        {%- assign item_handle = item_parts[1] -%}
+        {%- assign has_dropdown = item_parts[2] -%}
+        {%- assign dropdown_items = item_parts[3] -%}
+
+        <li>
+          {%- if has_dropdown == 'true' -%}
+            <header-menu>
+              <details id="Details-HeaderMenu-{{ forloop.index }}">
+                <summary
+                  id="HeaderMenu-{{ item_handle }}"
+                  class="header__menu-item list-menu__item link focus-inset"
+                >
+                  <span>{{ item_title }}</span>
+                  {{- 'icon-caret.svg' | inline_asset_content -}}
+                </summary>
+                <ul
+                  id="HeaderMenu-MenuList-{{ forloop.index }}"
+                  class="header__submenu list-menu list-menu--disclosure color-{{ section.settings.menu_color_scheme }} gradient caption-large motion-reduce global-settings-popup"
+                  role="list"
+                  tabindex="-1"
+                >
+                  {%- assign sub_items = dropdown_items | split: ',' -%}
+                  {%- for sub_item in sub_items -%}
+                    {%- if sub_item != blank -%}
+                      {%- assign sub_parts = sub_item | split: ':' -%}
+                      {%- assign sub_title = sub_parts[0] -%}
+                      {%- assign sub_handle = sub_parts[1] -%}
+                      {%- assign sub_url = '/apps/fits/' | append: sub_handle -%}
+                      <li>
+                        <a
+                          id="HeaderMenu-{{ item_handle }}-{{ sub_handle }}"
+                          href="{{ sub_url }}"
+                          class="header__menu-item list-menu__item link link--text focus-inset caption-large"
+                        >
+                          {{ sub_title }}
+                        </a>
+                      </li>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </ul>
+              </details>
+            </header-menu>
+          {%- else -%}
+            <a
+              id="HeaderMenu-{{ item_handle }}"
+              href="{{ routes.collections_url }}/{{ item_handle }}"
+              class="header__menu-item list-menu__item link link--text focus-inset"
+            >
+              <span>{{ item_title }}</span>
+            </a>
+          {%- endif -%}
+        </li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+</nav>
