@@ -113,6 +113,10 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   max-width: 100%;
 }
 
+.announcement-bar-section {
+  height: 32px;
+}
+
 .page-width.drawer-menu {
   max-width: 100%;
 }
@@ -2186,7 +2190,7 @@ input[type='checkbox'] {
 .announcement-bar__announcement {
   color: rgb(var(--color-foreground));
   width: 100%;
-  height: 100%;
+  height: 32px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
