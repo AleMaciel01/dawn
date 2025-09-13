@@ -112,6 +112,7 @@
           </h2>
         </a>
       </div>
+      <div id="smartwishlist" data-product="{{ product.id }}" data-variant="{{ product.variants.first.id }}"></div>
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when '@app' -%}
