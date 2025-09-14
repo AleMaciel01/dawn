@@ -4,7 +4,7 @@
   Subcategories are dynamically pulled from a collection_tree metafield
 {% endcomment %}
 
-<div class="page-width" id="section-{{ section.id }}">
+<div class="page-width custom-carousel-container" id="section-{{ section.id }}">
   <div class="container">
     {% if section.settings.section_title != blank %}
       <div class="section-header">
@@ -95,6 +95,7 @@
   }
 
   .section-title {
+    text-align: left;
     font-size: 2.5rem;
     font-weight: bold;
     color: {{ section.settings.title_color }};
@@ -109,12 +110,14 @@
   }
 
   .category-card {
+    max-width: 300px;
     background: white;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid #e5e5e5;
+    margin: 0 auto;
   }
 
   .category-card:hover {
