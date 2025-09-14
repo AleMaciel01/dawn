@@ -109,6 +109,13 @@
   }
 }
 
+.page-width {
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0 16px;
+  max-width: var(--page-width);
+}
+
 body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   max-width: 100%;
 }
