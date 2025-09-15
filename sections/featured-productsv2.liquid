@@ -4,7 +4,7 @@
 {%- endcomment -%}
 
 <div class="custom-carousel-wrapper">
-  <div class="custom-carousel-container page-width">
+  <div class="page-width">
     <div class="custom-carousel-header" style="text-align:{{ section.settings.ha }};">
       {% if section.settings.h != blank %}
         <h2 class="custom-carousel-heading">{{ section.settings.h }}</h2>
@@ -38,6 +38,11 @@
                   width="300"
                   height="300"
                 >
+                {% if product.variants.first.inventory_quantity > 0 %}
+                  <div class="custom-carousel-stock">{{ product.variants.first.inventory_quantity }} in stock</div>
+                {% else %}
+                  <div class="custom-carousel-stock out-of-stock">Out of Stock</div>
+                {% endif %}
                 <div class="custom-carousel-sku">{{ product.variants.first.sku | default: product.id }}</div>
                 <div class="custom-carousel-title">{{ product.title }}</div>
                 <div class="custom-carousel-price">{{ product.price | money }}</div>
@@ -117,6 +122,18 @@
     display: block;
     margin: 0 auto 0.5rem;
     background: white;
+  }
+
+  .custom-carousel-stock {
+    font-size: 12px;
+    color: #22c55e;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  .custom-carousel-stock.out-of-stock {
+    color: #ef4444;
   }
 
   .custom-carousel-sku {
