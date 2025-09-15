@@ -29,25 +29,34 @@
   {{ 'main-product-rallysport.css' | asset_url | stylesheet_tag }}
 
   {%- style -%}
-    .product__title h1 {
-      font-size: 20px;
-      font-weight: 600;
-      line-height: 1.25;
-      color: #000;
-      margin-bottom: 0.5rem;
+      .custom-carousel-stock.out-of-stock {
+        color: #ef4444;
+    }
+      .custom-carousel-stock {
+        color: #127e37;
+        font-weight: 700;
+        text-align: left;
     }
 
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-    }
-
-    @media screen and (min-width: 750px) {
-      .section-{{ section.id }}-padding {
-        padding-top: {{ section.settings.padding_top }}px;
-        padding-bottom: {{ section.settings.padding_bottom }}px;
+      .product__title h1 {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.25;
+        color: #000;
+        margin-bottom: 0.5rem;
       }
-    }
+
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+        padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+      }
+
+      @media screen and (min-width: 750px) {
+        .section-{{ section.id }}-padding {
+          padding-top: {{ section.settings.padding_top }}px;
+          padding-bottom: {{ section.settings.padding_bottom }}px;
+        }
+      }
   {%- endstyle -%}
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
@@ -339,15 +348,13 @@
                         </span>
                       </button>
                     </quantity-input>
-                    {% if product.available == true %}
-                      <span>In Stock</span>
+                    {% if product.variants.first.inventory_quantity > 0 %}
+                      <span class="custom-carousel-stock">
+                        {{ product.variants.first.inventory_quantity }} in stock
+                      </span>
+                      <span> and ready to ship!</span>
                     {% else %}
-                      <span>Out of Stock</span>
-                    {% endif %}
-                    {% if product.metafields.custom.out_of_stock_lead_time.value != blank %}
-                      <span
-                        >Average time to ship: {{ product.metafields.custom.out_of_stock_lead_time.value }} days</span
-                      >
+                      <div class="custom-carousel-stock out-of-stock">Out of Stock</div>
                     {% endif %}
                     {%- liquid
                       assign volume_pricing_array = product.selected_or_first_available_variant.quantity_price_breaks | sort: 'quantity' | reverse

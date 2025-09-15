@@ -76,6 +76,17 @@
 }
 
 /* base */
+.sku-tag {
+  position:absolute;
+  background-color: rgb(233, 230, 230);
+  border-radius: 25px;
+  top: 10px;
+  left: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  z-index: 2;
+}
+
 .page-width {
   box-sizing: border-box;
   margin: 0 auto;
