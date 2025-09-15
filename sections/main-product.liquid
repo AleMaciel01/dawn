@@ -121,12 +121,14 @@
           </h2>
         </a>
       </div>
-      {%- for block in section.blocks -%}
-        {%- case block.type -%}
-          {%- when '@app' -%}
-            {% render block class="mobile" %}
-        {%- endcase -%}
-      {%- endfor -%}
+      <div class="yotpo-wrapper-desktop">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              {% render block %}
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
       <div class="grid__item product__media-wrapper">
         {% render 'product-media-gallery', variant_images: variant_images %}
       </div>
@@ -139,9 +141,9 @@
 
           {%- for block in section.blocks -%}
             {%- case block.type -%}
-              {%- when '@app' -%}
-                {% render block class= "desktop" %}
-              {%- when 'text' -%}
+                <div class="yotpo-wrapper-mobile" {{ block.shopify_attributes }}>
+                  {% render block %}
+                </div>
                 <p
                   class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
                   {{ block.shopify_attributes }}
