@@ -115,6 +115,8 @@
 
 .card__inner {
   width: 100%;
+  max-height: 250px;
+  height: 100%;
 }
 
 .card--media .card__inner .card__content {
