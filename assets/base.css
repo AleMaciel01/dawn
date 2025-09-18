@@ -81,13 +81,21 @@
   .yotpo-wrapper-desktop {
     display: none;
   }
+  .yotpo-wrapper-mobile {
+    display: flex;
+  }
 }
 
 @media (max-width: 749px) {
   .yotpo-wrapper-mobile {
     display: none;
   }
+
+  .yotpo-wrapper-desktop {
+    display: flex;
+  }
 }
+
 
 .sku-tag {
   position:absolute;
@@ -139,6 +147,18 @@
   letter-spacing: calc(var(--font-heading-scale) * 0.06rem);
   color: rgb(var(--color-foreground));
   padding-bottom: 1.75rem;
+}
+
+.custom-carousel-stock {
+    font-size: 1.4rem;
+    color: #127e37;
+    margin-bottom: 0.25rem;
+    font-weight: 700;
+    text-align: left;
+}
+
+.custom-carousel-stock.out-of-stock {
+    color: #ef4444;
 }
 
 body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
