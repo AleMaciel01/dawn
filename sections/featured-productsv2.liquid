@@ -46,6 +46,18 @@
                 <div class="custom-carousel-sku">{{ product.variants.first.sku | default: product.id }}</div>
                 <div class="custom-carousel-title">{{ product.title }}</div>
                 <div class="custom-carousel-price">{{ product.price | money }}</div>
+                <div
+                  class="yotpo bottomLine"
+                  data-appkey="qbd9LFlzEc7Blg0tOCJaevh2cjgTvHbusdHCboqs"
+                  data-domain="{{shop.permanent_domain | escape }}"
+                  data-product-id="{{ product.id }}"
+                  data-product-models="{{ product.id }}"
+                  data-name="{{ product.title | escape }}"
+                  data-url="{{ shop.url }}{{ product.url }}"
+                  data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+                  data-description="{{ product.description | escape }}"
+                  data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}"
+                ></div>
               </a>
             </div>
           {% endfor %}
