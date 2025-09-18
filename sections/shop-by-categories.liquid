@@ -60,7 +60,7 @@
                         href="{{ routes.collections_url }}/{{ collection.handle }}/{{ subcollection.h }}"
                         class="subcategory-link"
                       >
-                        {{ subcollection.t }}
+                        <span class="subcollection-title">{{ subcollection.t }}</span>
                         <svg class="arrow-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
                           <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -185,10 +185,9 @@
     font-weight: var(--font-body-weight-bold);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 5px 0;
     transition: color 0.3s ease;
-    text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
   }
@@ -200,12 +199,21 @@
   .arrow-icon {
     opacity: 0.6;
     transition: opacity 0.3s ease, transform 0.3s ease;
-    flex-shrink: 0;
+    flex: 0 0 auto;
   }
 
   .subcategory-link:hover .arrow-icon {
     opacity: 1;
     transform: translateX(3px);
+  }
+
+  .subcategory-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
+    flex-shrink: 1;
   }
 
   /* Responsive Design */
